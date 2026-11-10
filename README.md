@@ -4,6 +4,7 @@
 [![Flask](https://img.shields.io/badge/Flask-API-green.svg)](https://flask.palletsprojects.com/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+
 שרת Text-to-Speech מקומי מבוסס Flask, המשלב את מודל הניקוד [Phonikud](https://github.com/thewh1teagle/phonikud) יחד עם מנוע הדיבור [Piper](https://github.com/rhasspy/piper) ליצירת הקראה חלקה, טבעית ומדויקת בטקסטים מעורבים (עברית ואנגלית).
 הפרויקט כולל תוסף דפדפן (Firefox Extension) עשיר המאפשר הקראת טקסטים מהרשת בקליק, כולל חלון ניהול מובנה לשליטה במהירות ההקראה.
 
