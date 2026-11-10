@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Local Hebrew TTS",
+  "name": "Heb-TTS Reader",
   "version": "1.0",
-  "description": "הקראת טקסט מסומן באמצעות שרת TTS מקומי",
+  "description": "הקראת טקסטים בעברית ואנגלית באמצעות שרת ה-Flask המקומי.",
   "permissions": [
     "contextMenus"
   ],
