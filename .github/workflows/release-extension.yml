@@ -20,7 +20,7 @@ jobs:
 
       - name: Zip the extension
         run: |
-          cd extension
+          cd firefox_extension
           # אורז את כל קבצי התוסף לקובץ זיפ אחד מחוץ לתיקייה
           zip -r ../heb-tts-extension.zip *
           cd ..
