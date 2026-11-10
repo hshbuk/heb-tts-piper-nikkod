@@ -60,7 +60,7 @@ docker build -t heb-tts-server .
 docker run -d -p 5000:5000 --name heb-tts heb-tts-server
 ```
 השרת יהיה זמין כעת בכתובת `http://127.0.0.1:5000`.
-לעצירת השרת: `docker stop heb-tts
+לעצירת השרת: `docker stop heb-tts`
 
 ## 🧩 תוסף פיירפוקס (Firefox Extension)
 
