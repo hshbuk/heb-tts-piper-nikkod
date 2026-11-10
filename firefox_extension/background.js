@@ -8,8 +8,26 @@ let isPlaying = false;
 let isPaused = false;
 let sessionToken = 0;
 let playbackSpeed = 1.0;
+let keepAliveInterval = null; // משתנה לשמירת מנגנון ההשכמה
 
-// טעינת המהירות השמורה בהפעלת התוסף
+// --- מנגנון Keep-Alive למניעת הריגת הסקריפט ע"י פיירפוקס ---
+function startKeepAlive() {
+  if (!keepAliveInterval) {
+    // פנייה קלילה ל-API של הדפדפן כל 20 שניות שמאפסת את טיימר הכיבוי
+    keepAliveInterval = setInterval(() => {
+      browser.runtime.getPlatformInfo();
+    }, 20000);
+  }
+}
+
+function stopKeepAlive() {
+  if (keepAliveInterval) {
+    clearInterval(keepAliveInterval);
+    keepAliveInterval = null;
+  }
+}
+// ---------------------------------------------------------
+
 browser.storage.local.get('playbackSpeed').then(res => {
   if (res.playbackSpeed) playbackSpeed = parseFloat(res.playbackSpeed);
 });
@@ -70,6 +88,7 @@ function stopPlayback() {
   if (abortController) { abortController.abort(); abortController = null; }
   cleanupCurrentAudio();
   updateBadge("");
+  stopKeepAlive(); // הדפדפן רשאי כעת לכבות את הסקריפט כדי לחסוך זיכרון
 }
 
 async function togglePauseResume() {
@@ -103,7 +122,7 @@ function playBlob(blob, token) {
     cleanupCurrentAudio();
     currentAudioUrl = URL.createObjectURL(blob);
     currentAudio = new Audio(currentAudioUrl);
-    currentAudio.playbackRate = playbackSpeed; // החלת המהירות שנבחרה
+    currentAudio.playbackRate = playbackSpeed; 
     
     currentAudio.onended = () => { cleanupCurrentAudio(); resolve(); };
     currentAudio.onerror = (err) => { cleanupCurrentAudio(); reject(err); };
@@ -122,6 +141,8 @@ async function startSpeaking(text) {
   isPlaying = true;
   playbackQueue = sentences;
   abortController = new AbortController();
+  
+  startKeepAlive(); // מתחילים להעיר את הדפדפן
   updateBadge("...", "#2563eb");
 
   try {
@@ -138,7 +159,6 @@ async function startSpeaking(text) {
     if (myToken === sessionToken) stopPlayback();
   } catch (error) {
     if (error.name === "AbortError") return;
-    console.error("[Heb-TTS Error]:", error);
     updateBadge("ERR", "#dc2626");
     setTimeout(() => { if (myToken === sessionToken) updateBadge(""); }, 3500);
   }
@@ -158,7 +178,6 @@ async function getSelectedTextFromActiveTab() {
   }
 }
 
-// קבלת פקודות מחלון ה-Popup או מקיצורי מקלדת
 browser.runtime.onMessage.addListener(async (message) => {
   if (message.command === "play-selected") {
     const selected = await getSelectedTextFromActiveTab();
@@ -169,7 +188,7 @@ browser.runtime.onMessage.addListener(async (message) => {
     stopPlayback();
   } else if (message.command === "set-speed") {
     playbackSpeed = parseFloat(message.speed);
-    if (currentAudio) currentAudio.playbackRate = playbackSpeed; // עדכון חי גם בזמן דיבור
+    if (currentAudio) currentAudio.playbackRate = playbackSpeed;
   }
 });
 
