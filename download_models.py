@@ -2,10 +2,9 @@ import os
 import urllib.request
 import sys
 
-# רשימת הקבצים הנדרשים והקישורים הישירים להורדה
 MODELS = {
-    # Phonikud
-    "phonikud-1.0.int8.onnx": "https://huggingface.co/thewh1teagle/phonikud/resolve/main/phonikud-1.0.int8.onnx",
+    # Phonikud - הקישור המעודכן
+    "phonikud-1.0.int8.onnx": "https://huggingface.co/Phonikud/phonikud-onnx/resolve/main/phonikud-1.0.int8.onnx",
     
     # Piper Hebrew
     "he_IL-saspeech-medium.onnx": "https://huggingface.co/rhasspy/piper-voices/resolve/main/he/he_IL/saspeech/medium/he_IL-saspeech-medium.onnx",
@@ -25,7 +24,6 @@ def report_progress(block_num, block_size, total_size):
 
 def download_files():
     print("מתחיל בהורדת קבצי המודלים הדרושים לפרויקט...\n")
-    
     for filename, url in MODELS.items():
         if os.path.exists(filename):
             print(f"[קיים] הקובץ {filename} כבר נמצא בספרייה, מדלג.")
@@ -35,8 +33,9 @@ def download_files():
                 urllib.request.urlretrieve(url, filename, reporthook=report_progress)
                 print("\n-> ההורדה הושלמה בהצלחה!\n")
             except Exception as e:
-                print(f"\n-> שגיאה בהורדת הקובץ {filename}: {e}\n")
+                print(f"\n-> שגיאה קריטית בהורדת הקובץ {filename}: {e}\n")
+                sys.exit(1) # עכשיו הדוקר ייעצר אם ההורדה נכשלת!
 
 if __name__ == "__main__":
     download_files()
-    print("כל הקבצים נבדקו/הורדו. אפשר כעת להפעיל את שרת ה-TTS.")
+    print("כל הקבצים נבדקו/הורדו בהצלחה.")
