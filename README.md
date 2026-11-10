@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-API-green.svg)](https://flask.palletsprojects.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 שרת Text-to-Speech מקומי מבוסס Flask, המשלב את מודל הניקוד [Phonikud](https://github.com/thewh1teagle/phonikud) יחד עם מנוע הדיבור [Piper](https://github.com/rhasspy/piper) ליצירת הקראה חלקה, טבעית ומדויקת בטקסטים מעורבים (עברית ואנגלית).
 הפרויקט כולל תוסף דפדפן (Firefox Extension) עשיר המאפשר הקראת טקסטים מהרשת בקליק, כולל חלון ניהול מובנה לשליטה במהירות ההקראה.
@@ -76,4 +76,5 @@ start output.wav
 
 ## 📜 רישיון
 
-פרויקט זה משוחרר תחת רישיון MIT. לפרטים נוספים, ראו את קובץ ה-[LICENSE](LICENSE).
+פרויקט זה משוחרר תחת רישיון **GNU GPLv3**. 
+המשמעות היא שאתם רשאים להשתמש, לשנות ולהפיץ את הקוד בחופשיות, אך כל פרויקט נגזר שמשתמש בקוד זה חייב להיות משוחרר גם הוא תחת אותו רישיון קוד פתוח. לפרטים נוספים, ראו את קובץ ה-[LICENSE](LICENSE).
