@@ -1,0 +1,18 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Audio outputs
+*.wav
+
+# Large Model files (ONNX) - should be downloaded separately
+*.onnx
+
+# Ignore all JSON config files for models, OR explicitly allow them if you prefer
+# *.onnx.json
