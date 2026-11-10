@@ -30,20 +30,7 @@ uv venv
 
 # 2. התקנת התלויות
 uv pip install -r requirements.txt
-```
-### 🐳 שימוש ב-Docker (הדרך הקלה ביותר)
-
-אם מותקן לכם Docker, אין צורך להתקין Python או להוריד מודלים ידנית. הכל מוכן מראש:
-
-```powershell
-# 1. בניית הקונטיינר (יוריד אוטומטית גם את כל המודלים)
-docker build -t heb-tts-server .
-
-# 2. הפעלת השרת
-docker run -d -p 5000:5000 --name heb-tts heb-tts-server
-```
-השרת יהיה זמין כעת בכתובת `http://127.0.0.1:5000`.
-לעצירת השרת: `docker stop heb-tts`.
+````.
 ### 📥 הורדת המודלים
 
 הפרויקט כולל סקריפט המוריד אוטומטית את מודל הניקוד ואת שני מודלי הדיבור (Piper) בגודל בינוני ישירות לתיקייה הראשית:
@@ -59,6 +46,21 @@ python download_models.py
 python -X utf8 server.py
 ```
 השרת ירוץ ויאזין לבקשות בכתובת המקומית: `http://127.0.0.1:5000`
+
+
+### 🐳 שימוש ב-Docker (הדרך הקלה ביותר)
+
+אם מותקן לכם Docker, אין צורך להתקין Python או להוריד מודלים ידנית. הכל מוכן מראש:
+
+```powershell
+# 1. בניית הקונטיינר (יוריד אוטומטית גם את כל המודלים)
+docker build -t heb-tts-server .
+
+# 2. הפעלת השרת
+docker run -d -p 5000:5000 --name heb-tts heb-tts-server
+```
+השרת יהיה זמין כעת בכתובת `http://127.0.0.1:5000`.
+לעצירת השרת: `docker stop heb-tts
 
 ## 🧩 תוסף פיירפוקס (Firefox Extension)
 
