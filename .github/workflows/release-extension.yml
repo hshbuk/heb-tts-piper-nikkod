@@ -1,0 +1,32 @@
+name: Release Firefox Extension
+
+# האוטומציה תרוץ בכל פעם שתדחוף תגית גרסה (למשל v1.0) או בהפעלה ידנית
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+# הרשאות נדרשות כדי שגיטהאב יוכל ליצור Release
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Zip the extension
+        run: |
+          cd extension
+          # אורז את כל קבצי התוסף לקובץ זיפ אחד מחוץ לתיקייה
+          zip -r ../heb-tts-extension.zip *
+          cd ..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: heb-tts-extension.zip
+          generate_release_notes: true
