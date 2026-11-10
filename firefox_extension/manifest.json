@@ -1,15 +1,34 @@
 {
   "manifest_version": 3,
   "name": "Heb-TTS Reader",
-  "version": "1.0",
-  "description": "הקראת טקסטים בעברית ואנגלית באמצעות שרת ה-Flask המקומי.",
+  "version": "2.0",
+  "description": "הקראת טקסטים דו-לשונית (עברית ואנגלית) עם הזרמת משפטים חכמה באמצעות שרת Piper ו-Phonikud מקומי.",
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "activeTab",
+    "scripting"
   ],
   "host_permissions": [
     "http://127.0.0.1:5000/*"
   ],
+  "action": {
+    "default_title": "Heb-TTS (לחץ להשהיה/המשך)"
+  },
   "background": {
     "scripts": ["background.js"]
+  },
+  "commands": {
+    "speak-or-pause": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "הקרא טקסט מסומן או השהה/המשך ניגון"
+    },
+    "stop-tts": {
+      "suggested_key": {
+        "default": "Alt+X"
+      },
+      "description": "עצור הקראה לחלוטין"
+    }
   }
 }
