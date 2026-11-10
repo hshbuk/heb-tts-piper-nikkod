@@ -1,18 +1,20 @@
 {
   "manifest_version": 3,
   "name": "Heb-TTS Reader",
-  "version": "2.0",
+  "version": "2.1",
   "description": "הקראת טקסטים דו-לשונית (עברית ואנגלית) עם הזרמת משפטים חכמה באמצעות שרת Piper ו-Phonikud מקומי.",
   "permissions": [
     "contextMenus",
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "host_permissions": [
     "http://127.0.0.1:5000/*"
   ],
   "action": {
-    "default_title": "Heb-TTS (לחץ להשהיה/המשך)"
+    "default_title": "Heb-TTS Reader",
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": ["background.js"]
