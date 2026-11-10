@@ -28,11 +28,12 @@ uv venv
 # 2. התקנת התלויות
 uv pip install -r requirements.txt
 ```
-
 ### 📥 הורדת המודלים
+הפרויקט כולל סקריפט המוריד אוטומטית את מודל הניקוד ואת שני מודלי הדיבור (Piper) בגודל בינוני ישירות לתיקייה הראשית:
 
-כדי שהשרת יעבוד, יש להוריד את קבצי המודלים (ONNX) ולהניח אותם בתיקיית השורש של הפרויקט:
-
+```powershell
+python download_models.py
+```
 1. מודל ניקוד: `phonikud-1.0.int8.onnx`
 2. מודל עברית (Piper): `he_IL-saspeech-medium.onnx` וקובץ ההגדרות `he_IL-saspeech-medium.onnx.json`
 3. מודל אנגלית (Piper): `en_US-bryce-medium.onnx` וקובץ ההגדרות `en_US-bryce-medium.onnx.json`
